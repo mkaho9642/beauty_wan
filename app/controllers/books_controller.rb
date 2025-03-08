@@ -10,7 +10,7 @@ class BooksController < ApplicationController
       flash[:notice] = "Successfully created."
       redirect_to book_path(@book.id)
     else
-      flash.now[:notice] = "Failed with an error"
+      flash.now[:alert] = "Failed with an error"
       render :index
     end
   end
