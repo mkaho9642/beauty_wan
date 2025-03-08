@@ -8,13 +8,12 @@
   <span>
     <%= book.body %>
   </span>
+  <%= link_to "Show", book_path(book.id) %>
 <% end %>
-
-<p>Find me in app/views/books/index.html.erb</p>
 
 <h2>New book</h2>
 <%= form_with model: @book do |f| %>
-  <p>"Title"</p>
+  <p>Title</p>
   <%= f.text_field :title %>
   <p>"Body"</p>
   <%= f.text_area :body %>
