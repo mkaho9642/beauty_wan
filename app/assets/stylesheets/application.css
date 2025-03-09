@@ -24,6 +24,10 @@
   display: table;
  }
 
+ th {
+  padding-bottom: 5px;
+ }
+
  td {
   padding-bottom: 7px;
   padding-left: 5px;
@@ -43,6 +47,27 @@
 
  button {
   margin-bottom: 10px;
+ }
+
+ .flash-message.notice {
+  color: green;
+ }
+
+ .errors-box {
+  width: 450px;
+  border: 2px solid #FF0000;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #F0F0F0;
+ }
+
+ .errors-text {
+  background-color: #CC0000;
+  font-size: 12px;
+  color: #fff;
+  padding: 5px 5px 5px 15px;
+  text-align: left;
  }
  
 
