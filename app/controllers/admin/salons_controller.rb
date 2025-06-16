@@ -19,7 +19,7 @@ class Admin::SalonsController < ApplicationController
   end
 
   def show
-    @item = Salon.find(params[:id])
+    @salon = Salon.find(params[:id])
   end
 
   def edit
@@ -30,6 +30,7 @@ class Admin::SalonsController < ApplicationController
       redirect_to admin_salon_path(@salon)
     else
       render :edit
+    end
   end
 
   def destroy
@@ -43,5 +44,4 @@ class Admin::SalonsController < ApplicationController
     def salon_params
       params.require(:salon).permit(:name, :introduction,:image)
     end
-  end
 end
