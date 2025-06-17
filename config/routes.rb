@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     get 'users/confirm'
     patch 'users/quit'
     
+    get "search" => "searches#search"
+
     resources :users, only: [:show, :edit, :update] do
       member do
         get 'mypage'

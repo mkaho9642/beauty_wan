@@ -7,4 +7,15 @@ class Salon < ApplicationRecord
     validates :image
   end
   
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Salon.where(name: content)
+    elsif method == 'forward'
+      Salon.where('name LIKE ?', content + '%')
+    elsif method == 'backward'
+      Salon.where('name LIKE ?', '%' + content)
+    else
+      Salon.where('name LIKE ?', '%' + content + '%')
+    end
+  end
 end

@@ -1,0 +1,17 @@
+<h3>検索結果</h3>
+
+<% if @records.present? %>
+  <ul>
+    <% @records.each do |record| %>
+      <li>
+        <% if @model == "salon" %>
+          <%= link_to record.name, admin_salon_path(record) %>
+          <% elsif @model == "user" %>
+          <%= link_to record.name, user_path(record) %>
+          <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>検索結果はありませんでした。</p>
+<% end %>
