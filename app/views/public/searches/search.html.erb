@@ -5,7 +5,7 @@
     <% @records.each do |record| %>
       <li>
         <% if @model == "salon" %>
-          <%= link_to record.name, admin_salon_path(record) %>
+          <%= link_to record.name, salon_path(record) %>
           <% elsif @model == "user" %>
           <%= link_to record.name, user_path(record) %>
           <% end %>
