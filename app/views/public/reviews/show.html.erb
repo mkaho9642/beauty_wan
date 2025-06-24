@@ -1,2 +1,47 @@
-<h1>Reviews#show</h1>
-<p>Find me in app/views/reviews/show.html.erb</p>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card shadow-lg p-4 rounded-lg">
+        <h2 class="card-title text-center mb-4">レビュー詳細</h2>
+        <% if @post_review %>
+          <div class="mb-4">
+            <p class="h5"><strong>タイトル:</strong> <%= @post_review.review_title %></p>
+            <hr>
+            <p class="lead"><strong>内容:</strong></p>
+            <p><%= simple_format(@post_review.review_text) %></p>
+            <hr>
+            <p class="h5">
+              <strong>評価:</strong>
+              <div id="star-rate-<%= @post_review.id %>" class="d-inline-block align-middle ml-2"></div>
+            </p>
+            <hr>
+            <p class="mb-2"><strong>投稿者:</strong>
+              <% if @user.present? %>
+                <%= @user.name %>
+              <% else %>
+                不明なユーザー
+              <% end %>
+            </p>
+            <p class="mb-2"><strong>対象サロン:</strong>
+              <% if @salon.present? %>
+                <%= link_to @salon.name, salon_path(@salon) %>
+              <% else %>
+                不明なサロン
+              <% end %>
+            </p>
+            <p class="text-muted text-right"><small>投稿日時: <%= l @post_review.created_at, format: :short %></small></p>
+          </div>
+
+          <div class="text-center mt-4">
+            <%= link_to 'サロン詳細へ戻る', salon_path(@salon), class: 'btn btn-info mr-2' %>
+          </div>
+
+          <% else %>
+            <div class="alert alert-warning text-center" role="alert">
+              レビューが見つかりませんでした。
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

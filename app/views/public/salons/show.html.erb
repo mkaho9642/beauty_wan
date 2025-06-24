@@ -48,7 +48,7 @@
                 });
               </script>
             </p>
-            <p><strong><%= review.review_title %></strong></p>
+            <p><strong><%= link_to review.review_title, review_path(review) %></strong></p>
             <p><strong>内容</strong> <%= review.review_text %></p>
           </div>
         <% end %>
