@@ -3,7 +3,12 @@
     <div class="col-md-6">
       <h3><%= @salon.name %></h3>
       <div style="padding-left:20%;">
-        <%= image_tag url_for(@salon.image), class: 'img-fluid', style: 'width: 65%;' %>
+        <% if @salon.image.attached? %>
+          <%= image_tag url_for(@salon.image), class: 'img-fluid', style: 'width: 65%;' %>
+        <% else %>
+          <%# 画像がない場合のプレースホルダー %>
+          <%= image_tag "https://placehold.co/600x400/CCCCCC/333333?text=No+Image", class: 'img-fluid', style: 'width: 65%;' %>
+        <% end %>
       </div>
     </div>
     <div class="col-md-6">
@@ -15,7 +20,41 @@
         <strong>サロン情報 </strong><br>
         <span style="margin-left:135px;"><%= @salon.introduction %></span>
       </p>
-      <%= link_to 'レビュー投稿', new_review_path, class: 'btn btn-success' %>
+      <%= link_to 'レビュー投稿', new_salon_review_path(salon_id: @salon.id), class: 'btn btn-success' %>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>レビュー投稿一覧</h3>
+      <% if @salon.post_reviews.any? %>
+        <% @salon.post_reviews.each do |review|%>
+          <div class="card my-3 p-3 shadow-sm rounded-lg">
+            <p class="mb-1">
+              <strong><%= review.user.present? ? review.user.name : "不明なユーザー" %></strong>
+            </p>
+            <p class="mb-1">
+              <strong>評価:</strong>
+              <div id="star-rate-<%= review.id %>"></div>
+              <script>
+                $(document).on('turbolinks:load', function() {
+                  $('#star-rate-<%= review.id%>').raty({
+                    size      : 36,
+                    starOff   : '<%= asset_path('star-off.png') %>',
+                    starOn    : '<%= asset_path('star-on.png') %>',
+                    starHalf  : '<%= asset_path('star-half.png') %>',
+                    readOnly  : true,
+                    score     : <%= review.raty || 0 %>,
+                  });
+                });
+              </script>
+            </p>
+            <p><strong><%= review.review_title %></strong></p>
+            <p><strong>内容</strong> <%= review.review_text %></p>
+          </div>
+        <% end %>
+      <% else %>
+        <p>このサロンにはまだレビューがありません。</p>
+      <% end %>
     </div>
   </div>
 </div>

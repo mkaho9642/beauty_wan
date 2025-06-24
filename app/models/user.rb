@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :post_review, dependent: :destroy
+  has_many :post_reviews, dependent: :destroy
 
   has_one_attached :profile_image
 
@@ -30,5 +30,9 @@ class User < ApplicationRecord
     else
       User.where('name LIKE ?', '%' + content + '%')
     end
+  end
+
+  def posts
+    return Post.where(user_id: self.id)
   end
 end

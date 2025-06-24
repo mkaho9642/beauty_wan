@@ -1,6 +1,7 @@
 class Public::SalonsController < ApplicationController
   def show
     @salon = Salon.find(params[:id])
+    @post_reviews = @salon.review_id
   end
 
   private
