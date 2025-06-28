@@ -19,7 +19,9 @@ Rails.application.routes.draw do
       resources :reviews, only: [:new, :create]
     end
 
-    resources :reviews, only: [:show]
+    resources :reviews, only: [:show] do
+      resources :post_comments, only: [:create, :destroy]
+    end
 
     get 'users/confirm'
     patch 'users/quit'
