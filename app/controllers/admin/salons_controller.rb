@@ -1,5 +1,6 @@
 class Admin::SalonsController < ApplicationController
   layout 'admin'
+  before_action :set_salon, only: [:edit, :update]
 
   def index
     @salons = Salon.all
@@ -23,13 +24,14 @@ class Admin::SalonsController < ApplicationController
   end
 
   def edit
+    @salon
   end
 
   def update
     if @salon.update(salon_params)
       redirect_to admin_salon_path(@salon)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -37,6 +39,7 @@ class Admin::SalonsController < ApplicationController
   end
 
   private
+
     def set_salon
       @salon = Salon.find(params[:id])
     end

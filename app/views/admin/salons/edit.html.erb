@@ -1,1 +1,45 @@
-<h3>サロン情報編集</h3>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>サロン情報 編集</h3>
+      <%= form_with(model: [:admin, @salon], local: true) do |form| %>
+      <% if @salon.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= @salon.errors.count %>件のエラーがあります:</h2>
+          <ul>
+            <% @salon.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= form.label :name, "サロン名" %>
+        <%= form.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= form.label :introduction, "サロン紹介" %>
+        <%= form.text_area :introduction %>
+      </div>
+
+      <div class="field">
+        <%= form.label :image, "サロン画像" %>
+        <%= form.file_field :image %>
+        <% if @salon.image.attached? %>
+          <p>現在の画像:</p>
+          <%= image_tag url_for(@salon.image), size: "150x150" %>
+        <% end %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "更新する" %>
+      </div>
+      <% end %>
+
+      <%= link_to '戻る', admin_salons_path %>
+      <%= link_to 'サロン詳細を見る', @salon %>
+    </div>
+  </div>
+</div>
