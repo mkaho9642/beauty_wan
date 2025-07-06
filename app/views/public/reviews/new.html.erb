@@ -37,7 +37,7 @@
         <div class="form-group">
           <%= f.label :raty, "評価" %>
           <div id="star-rate-form"></div>
-          <%= f.hidden_field :raty, id: 'review_raty' %>
+          <%# <%= f.hidden_field :raty, id: 'review_raty' %>
         </div>
 
         <div class="form-group row">
@@ -65,13 +65,27 @@
 </div>
 
 <script>
-  $(document).on('turbolinks:load', function() {
+  document.addEventListener('turbolinks:load', initializeRaty);
+  document.addEventListener('turbo:load', initializeRaty);
+
+  function initializeRaty() {
     $('#star-rate-form').raty({
       starOn: '<%= asset_path('star-on.png') %>',
       starOff: '<%= asset_path('star-off.png') %>',
       starHalf: '<%= asset_path('star-half.png') %>',
       scoreName: 'post_review[raty]',
       half: true,
+      score: <%= @post_review.raty || 0 %>,
     });
-  });
+    <% if @post_review %> // show.html.erb のRaty初期化部分も同様に
+      $('#star-rate-<%= @post_review.id%>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        starHalf  : '<%= asset_path('star-half.png') %>',
+        readOnly  : true,
+        score: <%= @post_review.try(:raty) || 0 %>,
+      });
+    <% end %>
+  }
 </script>
