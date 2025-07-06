@@ -2,6 +2,9 @@
   <h2>マイページ</h2>
   <div class="row">
     <div class="col-md-3">
+      <div class="profile-image-area text-center mb-3">
+        <%= image_tag @user.get_profile_image(100, 100), class: "border", style: "width: 100px; height: 100px; object-fit: cover;" %>
+      </div>
       <table class="table table-bordered">
         <tbody>
           <tr>

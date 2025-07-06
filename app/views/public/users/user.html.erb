@@ -2,6 +2,9 @@
   <div class="row">
     <div class="col">
       <h2>登録情報</h2>
+      <div class="profile-image-area text-center mb-3">
+        <%= image_tag @user.get_profile_image(150, 150), class: "border", style: "width: 150px; height: 150px; object-fit: cover;" %>
+      </div>
       <div class="text-center">
         <table class="table table-bordered">
           <tbody>
@@ -28,7 +31,7 @@
               <%= link_to "退会", users_confirm_path, class: "btn btn-danger" %>
             </ul>
             <ul>
-              <%= link_to "戻る", mypage_user_path(current_user.id), class: "btn btn-primary" %>
+              <%= link_to "戻る", mypage_user_path(@user.id), class: "btn btn-primary" %>
             </ul>
           <% end %>
         </div>

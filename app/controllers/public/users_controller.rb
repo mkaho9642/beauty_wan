@@ -1,6 +1,8 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update]
+
   def mypage
-    @user = current_user
+    @user = User.find(params[:id])
     render 'mypage'
   end
 
@@ -17,6 +19,9 @@ class Public::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to user_path(current_user), alert: "他のユーザーの情報を編集することはできません。"
+    end
     render 'edit'
   end
 
@@ -43,8 +48,9 @@ class Public::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :nickname, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :nickname, :email, :password, :password_confirmation, :profile_image)
   end
+
   def user_state
     @user = user.find_by(email: params[:user][:email])
     return if user.nil?
