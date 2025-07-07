@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_one_attached :profile_image
 
   has_many :favorites, dependent: :destroy
+  has_many :favoriting_salons, through: :favorites, source: :salon
   def favorited_by?(salon)
     favorites.exists?(salon_id: salon.id)
   end

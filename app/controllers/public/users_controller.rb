@@ -13,7 +13,7 @@ class Public::UsersController < ApplicationController
 
   def index
     @user = User.find(params[:id])
-    @bookmarks = @user.bookmarks
+    @favorited_salons = @user.favoriting_salons
     render 'bookmark'
   end
 
@@ -23,6 +23,11 @@ class Public::UsersController < ApplicationController
       redirect_to user_path(current_user), alert: "他のユーザーの情報を編集することはできません。"
     end
     render 'edit'
+  end
+
+  def bookmark
+    @user = User.find(params[:id])
+    @favorited_salons = @user.favoriting_salons.page(params[:page]).per(10)
   end
 
   def update
