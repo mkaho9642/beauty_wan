@@ -1,0 +1,13 @@
+<% if user_signed_in? %>
+  <% if current_user.favorited_by?(salon) %>
+    <%= button_to salon_favorites_path(salon), method: :delete, class: "btn btn-danger" do %>
+      <i class="fa-solid fa-heart-crack"></i> ブックマーク解除
+    <% end %>
+  <% else %>
+    <%= button_to salon_favorites_path(salon), method: :post, class: "btn btn-primary" do %>
+      <i class="fa-solid fa-heart"></i> ブックマーク
+    <% end %>
+  <% end %>
+<% else %>
+  <p>ブックマークするには<a href="<%= new_user_session_path %>">ログイン</a>してください</p>
+<% end %>

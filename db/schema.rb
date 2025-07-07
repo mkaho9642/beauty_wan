@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_06_24_144957) do
+ActiveRecord::Schema.define(version: 2025_07_07_141424) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2025_06_24_144957) do
     t.integer "salon_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "salon_id"], name: "index_favorites_on_user_id_and_salon_id", unique: true
   end
 
   create_table "genres", force: :cascade do |t|

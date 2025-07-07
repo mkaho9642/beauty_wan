@@ -1,0 +1,7 @@
+<% @salons.each do |salon| %>
+  <div class="salon-card">
+    <h3><%= link_to salon.name, salon_path(salon) %></h3>
+    <p>ブックマーク数: <%= salon.favorites.count %></p>
+    <%= render 'favorite_button', salon: salon %>
+  </div>
+<% end %>

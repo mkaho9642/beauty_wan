@@ -20,6 +20,8 @@
         <strong>サロン情報 </strong><br>
         <span style="margin-left:135px;"><%= @salon.introduction %></span>
       </p>
+      <p>ブックマーク数: <%= @salon.favorites.count %></p>
+      <%= render 'favorite_button', salon: @salon %>
       <%= link_to 'レビュー投稿', new_salon_review_path(salon_id: @salon.id), class: 'btn btn-success' %>
     </div>
   </div><br>

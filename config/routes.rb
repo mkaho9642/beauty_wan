@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
     resources :salons, only: [:show, :index] do
       resources :reviews, only: [:new, :create]
+      resource :favorites, only: [:create, :destroy]
     end
 
     resources :reviews, only: [:show] do
