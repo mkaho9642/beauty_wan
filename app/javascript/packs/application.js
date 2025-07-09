@@ -12,8 +12,9 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
+import "jquery-raty-js"
 
-require('../raty');
+
 
 Rails.start()
 Turbolinks.start()

@@ -75,7 +75,6 @@
         starOff: '<%= asset_path('star-off.png') %>',
         starHalf: '<%= asset_path('star-half.png') %>',
         scoreName: 'post_review[raty]',
-        half: true,
         score: <%= @post_review.try(:raty) || 0 %>,
       });
     }
