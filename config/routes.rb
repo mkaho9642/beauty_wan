@@ -1,18 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :admin, skip: [:registrations, :passwords], controllers: {
-    sessions: "admin/sessions"
-  }
-
-  namespace :admin do
-    resources :salons, only: [:index, :show, :edit, :new, :create, :update, :destroy]
-    resources :users, only: [:index, :show, :edit, :update]
-    resources :genres, only: [:index, :edit, :create, :update, :destroy]
-    resources :reviews, only: [:show, :edit]
-  end
-
   scope module: :public do
     devise_for :users, controllers: {
-      registrations: 'users/registrations'
+      registrations: 'public/registrations'
     }
 
     root to: "homes#top"
@@ -38,5 +27,16 @@ Rails.application.routes.draw do
         get 'bookmark', action: :index
       end
     end
+  end
+
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+    sessions: "admin/sessions"
+  }
+
+  namespace :admin do
+    resources :salons, only: [:index, :show, :edit, :new, :create, :update, :destroy]
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :genres, only: [:index, :edit, :create, :update, :destroy]
+    resources :reviews, only: [:show, :edit]
   end
 end
