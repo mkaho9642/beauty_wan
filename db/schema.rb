@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_07_07_141424) do
+ActiveRecord::Schema.define(version: 2025_07_12_053344) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -97,6 +97,15 @@ ActiveRecord::Schema.define(version: 2025_07_07_141424) do
     t.integer "raty"
   end
 
+  create_table "salon_genres", force: :cascade do |t|
+    t.integer "salon_id", null: false
+    t.integer "genre_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_salon_genres_on_genre_id"
+    t.index ["salon_id"], name: "index_salon_genres_on_salon_id"
+  end
+
   create_table "salons", force: :cascade do |t|
     t.integer "genre_id"
     t.integer "review_id"
@@ -123,4 +132,6 @@ ActiveRecord::Schema.define(version: 2025_07_07_141424) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "salon_genres", "genres"
+  add_foreign_key "salon_genres", "salons"
 end

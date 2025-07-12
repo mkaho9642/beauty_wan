@@ -1,13 +1,14 @@
 class Admin::SalonsController < ApplicationController
   layout 'admin'
-  before_action :set_salon, only: [:edit, :update]
-
+  before_action :set_salon, only: [:show, :edit, :update, :destroy]
+  
   def index
     @salons = Salon.all
   end
 
   def new
     @salon = Salon.new
+    @genres = Genre.all
   end
 
   def create
@@ -15,27 +16,30 @@ class Admin::SalonsController < ApplicationController
     if @salon.save
       redirect_to admin_salon_path(@salon), notice: "サロンを登録しました"
     else
+      @genres = Genre.all
       render :new
     end
   end
 
   def show
-    @salon = Salon.find(params[:id])
   end
 
   def edit
-    @salon
+    @genres = Genre.all
   end
 
   def update
     if @salon.update(salon_params)
-      redirect_to admin_salon_path(@salon)
+      redirect_to admin_salon_path(@salon), notice: "サロン情報を更新しました。"
     else
+      @genres = Genre.all
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
+    @salon.destroy
+    redirect_to admin_salons_path, notice: "サロンを削除しました。"
   end
 
   private
@@ -45,6 +49,6 @@ class Admin::SalonsController < ApplicationController
     end
 
     def salon_params
-      params.require(:salon).permit(:name, :introduction,:image)
+      params.require(:salon).permit(:name, :introduction, :image, :genre_id)
     end
 end

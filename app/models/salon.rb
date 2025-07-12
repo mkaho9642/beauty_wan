@@ -2,6 +2,8 @@ class Salon < ApplicationRecord
   has_one_attached :image
   has_many :post_reviews, dependent: :destroy
 
+  belongs_to :genre, optional: true
+
   with_options presence: true do
     validates :name
     validates :introduction
