@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get 'users/confirm', to: 'public/users#confirm'
   patch 'users/quit', to: 'public/users#quit'
 
-  get "search" => "searches#search"
+  get "search" => "public/searches#search"
 
   resources :users, controller: 'public/users', only: [:show, :edit, :update] do
     member do
