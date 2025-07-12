@@ -1,5 +1,4 @@
-class Admin::ReviewsController < ApplicationController
-  layout 'admin'
+class Admin::ReviewsController < Admin::ApplicationController
   def show
   end
 end

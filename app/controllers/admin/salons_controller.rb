@@ -1,5 +1,4 @@
-class Admin::SalonsController < ApplicationController
-  layout 'admin'
+class Admin::SalonsController < Admin::ApplicationController
   before_action :set_salon, only: [:show, :edit, :update, :destroy]
   
   def index

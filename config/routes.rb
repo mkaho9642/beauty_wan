@@ -1,31 +1,30 @@
 Rails.application.routes.draw do
-  scope module: :public do
-    devise_for :users, controllers: {
-      registrations: 'public/registrations'
-    }
+  devise_for :users, controllers: {
+    registrations: 'public/registrations',
+    sessions: 'public/sessions'
+  }
 
-    root to: "homes#top"
-    get 'home/about', to: 'homes#about', as: :about
+  root to: "public/homes#top"
+  get 'home/about', to: 'public/homes#about', as: :about
 
-    resources :salons, only: [:show, :index] do
-      resources :reviews, only: [:new, :create]
-      resource :favorites, only: [:create, :destroy]
-    end
+  resources :salons, controller: 'public/salons', only: [:show, :index] do
+    resources :reviews, controller: 'public/reviews', only: [:new, :create]
+    resource :favorites, controller: 'public/favorites', only: [:create, :destroy]
+  end
 
-    resources :reviews, only: [:show] do
-      resources :post_comments, only: [:create, :destroy]
-    end
+  resources :reviews, controller: 'public/reviews', only: [:show] do
+    resources :post_comments, controller: 'public/post_comments', only: [:create, :destroy]
+  end
 
-    get 'users/confirm'
-    patch 'users/quit'
-    
-    get "search" => "searches#search"
+  get 'users/confirm', to: 'public/users#confirm'
+  patch 'users/quit', to: 'public/users#quit'
 
-    resources :users, only: [:show, :edit, :update] do
-      member do
-        get 'mypage'
-        get 'bookmark', action: :index
-      end
+  get "search" => "searches#search"
+
+  resources :users, controller: 'public/users', only: [:show, :edit, :update] do
+    member do
+      get 'mypage'
+      get 'bookmark', action: :index
     end
   end
 
@@ -34,6 +33,7 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
+    root to: 'homes#top'
     resources :salons, only: [:index, :show, :edit, :new, :create, :update, :destroy]
     resources :users, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :edit, :create, :update, :destroy]

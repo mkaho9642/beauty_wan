@@ -1,5 +1,4 @@
-class Admin::UsersController < ApplicationController
-  layout 'admin'
+class Admin::UsersController < Admin::ApplicationController
   before_action :authenticate_admin!
   
   def index
