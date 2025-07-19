@@ -30,8 +30,23 @@ body {
   background-color: #FFFDF6;
 }
 
+.search-form-hero {
+  max-width: 800px; /* 検索フォームの最大幅 */
+}
+
 .search-form-hero .btn {
   white-space: nowrap; /* ボタン内のテキストを折り返さない */
+}
+
+.btn-brown {
+  background-color: #7D7161; /* サドルブラウン */
+  color: #fff; /* 文字色を白に */
+  border-color: #7D7161; /* ボーダー色もブラウンに */
+}
+.btn-brown:hover {
+  background-color: #9B8F80; /* ホバー時の色を少し明るいブラウンに */
+  color: #fff;
+  border-color: #9B8F80;
 }
 
 footer {

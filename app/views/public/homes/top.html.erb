@@ -1,7 +1,11 @@
 <div class="main-visual-section text-center d-flex align-items-center justify-content-center">
   <div class="container">
 
-    <div class="main-visual-content">
+    <div class="main-visual-content mb-4">
+      <%# 画像がレスポンシブに対応するように、img-fluidクラスを追加します。 %>
+      <%# このクラスはBootstrapの機能で、画像を親要素の幅に合わせて自動的にリサイズします。 %>
+      <%= image_tag "main_visual.jpg", class: "img-fluid" %>
+    </div>
 
       <div class="search-form-hero p-4 rounded bg-white bg-opacity-75 mx-auto">
         <%= form_with url: search_path, method: :get, local: true, class: "d-flex flex-wrap justify-content-center align-items-center g-2" do |f| %>
@@ -12,12 +16,11 @@
         <% end %>
       </div>
       <p class="mt-4">
-        <%= link_to "全てのサロンを見る", salons_path, class: "btn btn-outline-light btn-lg" %>
+        <%= link_to "全てのサロンを見る", salons_path, class: "btn btn-brown btn-lg" %>
       </p>
     </div>
   </div>
 </div>
-<% # ★ここまでメインビジュアルセクション★ %>
 
 <div class="container my-5">
   <h2 class="text-center mb-4">サイトの特長</h2>
