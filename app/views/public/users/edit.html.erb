@@ -1,34 +1,36 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h2>User info</h2>
-      <%= form_with model: @user, url: user_path(@user), local: true do |f| %>
-        <div class="form-group">
-          <label>名前</label><br>
-          <%= f.text_field :name, class: "form-control name" %>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center mb-4">登録情報 編集</h2>
+
+      <%= form_with model: @user, url: user_path(@user), method: :patch, local: true, class: "card shadow-sm p-4 custom-card-background" do |f| %>
+        <div class="profile-image-area text-center mb-4">
+          <%= image_tag @user.get_profile_image(150, 150), class: "rounded-circle border-secondary", style: "width: 150px; height: 150px; object-fit: cover;" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :name, "名前", class: "form-label" %>
+          <%= f.text_field :name, class: "form-control" %>
         </div>
 
-        <div class="form-group">
-          <label for="inputImage">プロフィール画像</label><br>
-          <%= f.file_field :profile_image, accept: "image/*" %><br>
+        <div class="mb-3">
+          <%= f.label :profile_image, "プロフィール画像", class: "form-label" %>
+          <%= f.file_field :profile_image, class: "form-control" %>
         </div>
 
-        <div class="form-group">
-          <label>ニックネーム</label><br>
-          <%= f.text_field :nickname, class: "form-control nickname" %>
+        <div class="mb-3">
+          <%= f.label :nickname, "ニックネーム", class: "form-label" %>
+          <%= f.text_field :nickname, class: "form-control" %>
         </div>
 
-        <div class="form-group">
-          <label>メールアドレス</label><br>
-          <%= f.text_field :email, class: "form-control email" %>
+        <div class="mb-4">
+          <%= f.label :email, "メールアドレス", class: "form-label" %>
+          <%= f.email_field :email, class: "form-control" %>
         </div>
 
-        <div class="form-group">
-          <%= f.submit 'Update User', class:'btn btn-secondary' %>
+        <div class="d-grid gap-2">
+          <%= f.submit "Update User", class: "btn btn-brown w-100" %>
+          <%= link_to "戻る", user_path(@user), class: "btn btn-back w-100 mt-2" %>
         </div>
-        <ul>
-          <%= link_to "戻る", user_path(@user) %>
-        </ul>
       <% end %>
     </div>
   </div>
