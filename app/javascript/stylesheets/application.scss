@@ -8,9 +8,9 @@ header .navbar {
 }
 
 .header-logo {
-  height: 60px; /* ナビゲーションバーの高さに合わせて調整 */
-  width: auto; /* 高さに合わせて幅を自動調整 */
-  display: block; /* 余分なスペースをなくすためにブロック要素に */
+  height: 60px;
+  width: auto;
+  display: block;
 }
 
 .navbar-nav .nav-link {
@@ -47,6 +47,51 @@ body {
   background-color: #9B8F80; /* ホバー時の色を少し明るいブラウンに */
   color: #fff;
   border-color: #9B8F80;
+}
+
+.custom-table-border {
+  border: 1px solid #9FA4A7; /* テーブル全体のボーダー */
+}
+.custom-table-border th,
+.custom-table-border td {
+  border: 1px solid #9FA4A7; /* セルのボーダー */
+}
+
+.button-group-spacing .btn:not(:last-child) {
+  margin-right: 1rem; /* 最後のボタン以外に右マージンを適用 */
+}
+
+/* 編集ボタンのスタイル */
+.btn-edit {
+  background-color: #6B8E23; /* Olive Drab */
+  color: #fff;
+  border-color: #6B8E23;
+}
+.btn-edit:hover {
+  background-color: #8FBC8F; /* Dark Sea Green */
+  border-color: #8FBC8F;
+}
+
+/* 退会ボタンのスタイル */
+.btn-withdraw {
+  background-color: #A52A2A; /* Brown */
+  color: #fff;
+  border-color: #A52A2A;
+}
+.btn-withdraw:hover {
+  background-color: #CD5C5C; /* Indian Red */
+  border-color: #CD5C5C;
+}
+
+/* 戻るボタンのスタイル */
+.btn-back {
+  background-color: #6A5ACD; /* Slate Blue */
+  color: #fff;
+  border-color: #6A5ACD;
+}
+.btn-back:hover {
+  background-color: #836FFF; /* Medium Slate Blue */
+  border-color: #836FFF;
 }
 
 footer {

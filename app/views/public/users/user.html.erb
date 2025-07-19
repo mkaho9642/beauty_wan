@@ -1,15 +1,15 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h2>登録情報</h2>
-      <div class="profile-image-area text-center mb-3">
-        <%= image_tag @user.get_profile_image(150, 150), class: "border", style: "width: 150px; height: 150px; object-fit: cover;" %>
+<div class="container mt-3 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h2 class="text-center mb-4">登録情報</h2>
+      <div class="profile-image-area text-center mb-4"> 
+        <%= image_tag @user.get_profile_image(150, 150), class: "rounded-circle border border-secondary", style: "width: 150px; height: 150px; object-fit: cover;" %>
       </div>
       <div class="text-center">
-        <table class="table table-bordered">
+        <table class="table mx-auto custom-table-border" style="max-width: 600px;">
           <tbody>
             <tr>
-              <th>名前</th>
+              <th class="w-25">名前</th>
               <td><span><%= @user.name %></span></td>
             </tr>
             <tr>
@@ -22,17 +22,12 @@
             </tr>
           </tbody>
         </table>
-        <div class="d-flex justify-content-center">  
+
+        <div class="d-flex justify-content-center mt-4 button-group-spacing">
           <% if current_user == @user %>
-            <ul>
-              <%= link_to "編集", edit_user_path, class: "btn btn-success" %>
-            </ul>
-            <ul>
-              <%= link_to "退会", users_confirm_path, class: "btn btn-danger" %>
-            </ul>
-            <ul>
-              <%= link_to "戻る", mypage_user_path(@user.id), class: "btn btn-primary" %>
-            </ul>
+            <%= link_to "編集", edit_user_path, class: "btn btn-edit" %>
+            <%= link_to "退会", users_confirm_path, class: "btn btn-withdraw" %>
+            <%= link_to "戻る", mypage_user_path(@user.id), class: "btn btn-back" %>
           <% end %>
         </div>
       </div>
