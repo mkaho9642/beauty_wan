@@ -1,21 +1,75 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bookers</title>
+    <title>Beauty Wan</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/72c990a6f7.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light pt-0 pb-0">
+        <div class="container">
+          <%= link_to root_path, class: "navbar-brand p-0 my-0" do %>
+            <%= image_tag "logo.png", alt: "Beauty Wan Logo", class: "header-logo" %>
+          <% end %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <%= link_to about_path, class: "nav-link" do %>
+                  <i class="fa-solid fa-paw"></i> What's Beauty Wan
+                <% end %>
+              </li>
+              <% if user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to mypage_user_path(current_user.id), class: "nav-link" do %>
+                    <i class="fa-solid fa-user"></i> Mypage
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to bookmark_user_path(current_user.id), class: "nav-link" do %>
+                    <i class="fa-solid fa-bookmark"></i> Bookmarks
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+                    <i class="fa-solid fa-right-from-bracket"></i> Log out
+                  <% end %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to new_user_registration_path, class: "nav-link" do %>
+                    <i class="fa-solid fa-user-plus"></i> Sign up
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to new_user_session_path, class: "nav-link" do %>
+                    <i class="fa-solid fa-right-to-bracket"></i> Log in
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
     <main>
-      <% flash.each do |message_type, message| %>
-        <div class="flash-message <%= message_type %>"><%= message %></div>
-      <% end %>
+      <p class="notice"><%= notice %></p>
       <%= yield %>
     </main>
+    <footer class="pt-5 pb-4">
+      <div class="row">
+        <div class="mx-auto">
+          <p>CopyRight © Wan.inc</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

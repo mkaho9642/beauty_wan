@@ -1,0 +1,54 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <h2>検索結果</h2>
+      <% if @model == "salon" %>
+        <div class="row">
+          <% if @records.any? %>
+            <% @records.each do |salon| %>
+              <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                  <% if salon.image.attached? %>
+                    <%= image_tag salon.image, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+                  <% else %>
+                    <%= image_tag "no_image.jpg", class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+                  <% end %>
+                  <div class="card-body d-flex flex-column">
+                    <h5 class="card-title"><%= link_to salon.name, salon_path(salon) %></h5>
+                    <p class="card-text text-muted mb-2"><%= truncate(salon.introduction, length: 70) %></p>
+
+                    <% if salon.genre.present? %>
+                      <p class="card-text"><small class="text-muted">ジャンル: <%= salon.genre.name %></small></p>
+                    <% end %>
+
+                    <div class="mt-auto">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="col-12 text-center py-5">
+              <p class="lead">該当するサロンは見つかりませんでした。</p>
+            </div>
+          <% end %>
+        </div>
+      <% elsif @model == "user" %>
+        <h3>ユーザー検索結果</h3>
+        <% if @records.any? %>
+          <ul class="list-group">
+            <% @records.each do |user| %>
+              <li class="list-group-item">
+                <%= link_to user.name, user_path(user) %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="text-center py-3">該当するユーザーは見つかりませんでした。</p>
+        <% end %>
+      <% else %>
+        <p class="text-center py-3">検索結果はありませんでした。</p>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h2 class="my-4">サロン一覧</h2>
+        <%= link_to "サロン新規登録", new_admin_salon_path, class: "btn btn-primary" %>
+      </div>
+
+      <% if @salons.empty? %>
+        <p>登録されているサロンはありません。</p>
+      <% else %>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">サロン名</th>
+              <th scope="col">ジャンル</th>
+              <th scope="col">詳細</th>
+              <th scope="col">編集</th>
+              <th scope="col">削除</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @salons.each do |salon| %>
+              <tr>
+                <td><%= salon.id %></td>
+                <td><%= salon.name %></td>
+                <td><%= salon.genre.name if salon.genre.present? %></td>
+                <td><%= link_to "詳細", admin_salon_path(salon), class: "btn btn-info btn-sm" %></td>
+                <td><%= link_to "編集", edit_admin_salon_path(salon), class: "btn btn-success btn-sm" %></td>
+                <td><%= link_to "削除", admin_salon_path(salon), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <div class="text-center mt-4">
+          <%= paginate @salons %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

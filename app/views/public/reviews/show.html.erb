@@ -1,0 +1,113 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card shadow-lg p-4 rounded-lg">
+        <h2 class="card-title text-center mb-4">レビュー詳細</h2>
+        <% if @post_review %>
+          <div class="mb-4">
+            <p class="h5"><strong>タイトル:</strong> <%= @post_review.review_title %></p>
+            <hr>
+            <p class="lead"><strong>内容:</strong></p>
+            <p><%= simple_format(@post_review.review_text) %></p>
+            <hr>
+            <p class="h5">
+              <strong>評価:</strong>
+              <div id="star-rate-<%= @post_review.id %>" class="d-inline-block align-middle ml-2"></div>
+            </p>
+            <hr>
+            <p class="mb-2"><strong>投稿者:</strong>
+              <% if @user.present? %>
+                <%= @user.name %>
+              <% else %>
+                不明なユーザー
+              <% end %>
+            </p>
+            <p class="mb-2"><strong>対象サロン:</strong>
+              <% if @salon.present? %>
+                <%= link_to @salon.name, salon_path(@salon) %>
+              <% else %>
+                不明なサロン
+              <% end %>
+            </p>
+            <p class="text-muted text-right"><small>投稿日時: <%= l @post_review.created_at, format: :short %></small></p>
+          </div>
+
+          <div class="text-center mt-4">
+            <%= link_to 'サロン詳細へ戻る', salon_path(@salon), class: 'btn btn-info mr-2' %>
+          </div>
+
+          <hr class="my-5">
+
+          <h3 class="mb-3">コメント一覧 (<%= @post_review.post_comments.count %>)</h3>
+          <% if @post_review.post_comments.any? %>
+            <div class="comments-list">
+              <% @post_review.post_comments.each do |comment| %>
+                <div class="card mb-3 p-3 bg-light rounded-lg shadow-sm">
+                  <p class="mb-1">
+                    <strong><%= comment.user.present? ? comment.user.name : "不明なユーザー" %></strong>
+                    <small class="text-muted float-right"><%= l comment.created_at, format: :short %></small>
+                  </p>
+                  <p class="mb-1"><%= comment.comment_text %></p>
+                  <% if comment.user == current_user %>
+                    <div class="text-right">
+                      <%= link_to '削除', review_post_comment_path(@post_review, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger btn-sm' %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <p>まだコメントはありません。</p>
+          <% end %>
+
+          <hr class="my-5">
+          
+          <h3 class="mb-3">コメントを投稿する</h3>
+          <% if user_signed_in? %>
+            <% @new_comment ||= PostComment.new %>
+              <%= form_with model: [@post_review, @new_comment], url: review_post_comments_path(@post_review), local: true do |f| %>
+                <% if @new_comment.errors.any? %>
+                  <div id="error_explanation" class="alert alert-danger">
+                    <h4>コメントの投稿に失敗しました:</h4>
+                    <ul>
+                      <% @new_comment.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+                <div class="form-group">
+                  <%= f.label :comment_text, "コメント内容" %>
+                  <%= f.text_area :comment_text, class: 'form-control', rows: 3 %>
+                </div>
+                <%= f.submit "コメントする", class: 'btn btn-primary' %>
+              <% end %>
+            <% else %>
+              <div class="alert alert-info text-center" role="alert">
+                コメントを投稿するには<%= link_to 'ログイン', new_user_session_path %>が必要です。
+              </div>
+            <% end %>
+          <% else %>
+            <div class="alert alert-warning text-center" role="alert">
+              レビューが見つかりませんでした。
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).on('turbolinks:load', function() {
+    <% if @post_review %>
+      $('#star-rate-<%= @post_review.id%>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        starHalf  : '<%= asset_path('star-half.png') %>',
+        readOnly  : true,
+        score     : <%= @post_review.raty || 0 %>,
+      });
+    <% end %>
+  });
+</script>

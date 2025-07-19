@@ -1,0 +1,2 @@
+module Admin::SalonsHelper
+end

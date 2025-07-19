@@ -1,0 +1,101 @@
+@use '~bootstrap/scss/bootstrap';
+
+header .navbar {
+  background-color: #C7B7A3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-logo {
+  height: 60px; /* ナビゲーションバーの高さに合わせて調整 */
+  width: auto; /* 高さに合わせて幅を自動調整 */
+  display: block; /* 余分なスペースをなくすためにブロック要素に */
+}
+
+.navbar-nav .nav-link {
+  color: #333;
+}
+
+.container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+body {
+  background-color: #F1EFE9;
+}
+
+.custom-card-background {
+  background-color: #FFFDF6;
+}
+
+.main-visual-section {
+  position: relative;
+  overflow: hidden;
+  color: #fff; /* 文字色を白に */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+  background-image: url('../images/main_visual_pc.jpg'); /* app/javascript/から見た相対パス */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 550px;
+}
+
+@media (max-width: 991.98px) { /* Bootstrapのlgブレークポイント未満 (タブレット・スマホ) */
+  .main-visual-section {
+    background-image: url('../images/main_visual_sp.jpg'); /* スマホ用画像を背景に設定 */
+    min-height: 400px; /* スマホでの画像の高さを設定 */
+  }
+}
+
+.main-visual-section .container {
+  position: relative;
+  z-index: 1; /* コンテンツが背景画像より手前に来るように */
+}
+
+.main-visual-content {
+  /* メインビジュアル内のコンテンツのスタイル */
+  max-width: 700px; /* コンテンツの最大幅 */
+}
+
+.search-form-hero {
+  max-width: 800px; /* 検索フォームの最大幅 */
+}
+
+.search-form-hero .form-control,
+.search-form-hero .form-select {
+  flex: 1; /* flex-grow-1 と似た効果 */
+  min-width: 150px; /* 小さい画面での最小幅 */
+}
+
+.search-form-hero .btn {
+  white-space: nowrap; /* ボタン内のテキストを折り返さない */
+}
+
+.btn-bookmark-remove {
+  background-color: #dc3545; /* ブックマーク解除の色 */
+  color: #fff; /* 文字色 */
+  border-color: #dc3545; /* 枠線の色 */
+
+  &:hover {
+    background-color: #c82333; /* ホバー時の色を少し濃く */
+    border-color: #bd2130;
+  }
+}
+
+.btn-bookmark-add {
+  background-color: #007bff; /* ブックマークするの色 */
+  color: #fff; /* 文字色 */
+  border-color: #007bff; /* 枠線の色 */
+
+  &:hover {
+    background-color: #0069d9; /* ホバー時の色を少し濃く */
+    border-color: #0062cc;
+  }
+}
+
+footer {
+  background-color: #C7B7A3;
+}

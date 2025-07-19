@@ -1,24 +1,36 @@
-# README
+# Beauty Wan🐩
+## サイト概要
+### サイトテーマ
+愛犬のトリミングサロンを探せるレビューサイト
+​
+### テーマを選んだ理由
+愛犬のトリミングサロンを探そうとしたとき、人間の美容院やエステサロン等とは違い口コミ等のレビュー情報が少なかったため、レビューを参考にしたい私にはどのサロンに行くか決めるまで時間がかかりました。<br>
+トリミングでの事故やトラブル等も時々聞くため、大切な家族を一時的に預けるトリミングサロンは安心できる場所であってほしいと願っています。しかし、人間の美容院と比べ店舗数は少なく、そのサロンが実際どんなところであるかという情報は更に少ないです。<br>
+サロンの情報だけを掲載するのではなく、レビュー情報を入れることで、私と同様にレビューを参考にしたい飼い主さんにとっては、有益な情報源になるのではと思いこのテーマにしました。
+​
+### ターゲットユーザ
+- 愛犬のトリミングサロンを探している人
+- トリミングサロンのレビューを参考にしたい人
+- トリミングサロンの情報を投稿したい時
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### 主な利用シーン
+- トリミングサロン時を探したい時
+- 気になるトリミングサロンの評判を知りたい時
+- 行ったサロンのレビューを投稿したい時
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 設計書
+後ほど作成予定
+​
+## 開発環境
+- OS：Windows
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Visual Studio Code
+​
+## 使用素材
+- 著作権を考慮し、架空のデータを扱う予定です。<br>なお今後、実在するデータを利用する際には、事前に著作権保持者と契約を結んだ上で利用します。
+- フリーイラスト素材として以下を使用
+  * Font Awesome(https://fontawesome.com/)
+  * O-DAN(http://o-dan.net/ja/)
+  * イラストAC(https://www.ac-illust.com/)

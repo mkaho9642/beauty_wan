@@ -1,0 +1,11 @@
+<p>退会すると、サロンのブックマークやレビューの投稿ができなくなります</p>
+<p>退会しますか？</p>
+
+<% if current_user == @user %>
+  <ul>
+    <%= link_to "退会", users_quit_path, method: :patch, class: "btn btn-danger" %>
+  </ul>
+  <ul>
+    <%= link_to "戻る", user_path(current_user.id), class: "btn btn-primary" %>
+  </ul>
+<% end %>
