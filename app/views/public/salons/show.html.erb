@@ -1,71 +1,94 @@
-<div class="container mt-5">
+<div class="container my-5">
   <div class="row justify-content-center">
     <div class="col-md-10">
-      <div class="row">
-        <div class="col-md-4">
-          <h2><%= @salon.name %></h2>
-          <% if @salon.image.attached? %>
-            <%= image_tag @salon.image, size: "300x200" %>
-          <% else %>
-            <%= image_tag "no_image.jpg", size: "300x200" %>
-          <% end %>
-        </div>
-        <div class="col-md-8">
-          <p><strong>サロン名:</strong> <%= @salon.name %></p>
-          <p><strong>サロン情報:</strong> <%= @salon.introduction %></p>
-          <p>
-            <strong>ジャンル:</strong>
-            <% if @salon.genre.present? %>
-              <%= link_to @salon.genre.name, salons_by_genre_path(@salon.genre), class: "btn btn-outline-info btn-sm" %>
-            <% else %>
-              なし
-            <% end %>
-          </p>
+      <div class="card shadow-sm p-4 mb-5 custom-card-background">
+        <div class="row">
+          <div class="col-md-5 text-center">
+            <h2 class="mb-3"><%= @salon.name %></h2>
+            <div class="salon-image-wrapper mb-3">
+              <% if @salon.image.attached? %>
+                <%= image_tag @salon.image, class: "img-fluid rounded shadow-sm", style: "max-width: 100%; height: auto; object-fit: cover;" %>
+              <% else %>
+                <%= image_tag "no_image.jpg", class: "img-fluid rounded shadow-sm", style: "max-width: 100%; height: auto; object-fit: cover;" %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md-7">
+          <h4 class="mb-3">サロン情報</h4>
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <th scope="row" class="text-nowrap">サロン名:</th>
+                <td><%= @salon.name %></td>
+              </tr>
+              <tr>
+                <th scope="row" class="text-nowrap">サロン紹介:</th>
+                <td><%= @salon.introduction %></td>
+              </tr>
+              <tr>
+                <th scope="row" class="text-nowrap">ジャンル:</th>
+                <td>
+                  <% if @salon.genre.present? %>
+                    <%= link_to @salon.genre.name, salons_by_genre_path(@salon.genre), class: "btn btn-outline-info btn-sm" %>
+                  <% else %>
+                    なし
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
           <% if user_signed_in? %>
-            <% if @salon.favorited_by?(current_user) %>
-              <%= link_to salon_favorites_path(@salon), method: :delete, class: "btn btn-danger" do %>
-                <i class="fa-solid fa-heart"></i> ブックマーク解除
+            <div class="d-flex justify-content-end align-items-center mt-4">
+              <% if @salon.favorited_by?(current_user) %>
+                <%= link_to salon_favorites_path(@salon), method: :delete, class: "btn btn-danger me-2" do %>
+                  <i class="fa-solid fa-heart"></i> ブックマーク解除
+                <% end %>
+              <% else %>
+                <%= link_to salon_favorites_path(@salon), method: :post, class: "btn btn-secondary me-2" do %>
+                  <i class="fa-regular fa-heart"></i> ブックマーク
+                <% end %>
               <% end %>
-            <% else %>
-              <%= link_to salon_favorites_path(@salon), method: :post, class: "btn btn-secondary" do %>
-                <i class="fa-regular fa-heart"></i> ブックマーク
-              <% end %>
-            <% end %>
-            <%= link_to 'レビュー投稿', new_salon_review_path(@salon), class: 'btn btn-success' %>
+              <%= link_to 'レビュー投稿', new_salon_review_path(@salon), class: 'btn btn-success' %>
+            </div>
           <% end %>
         </div>
       </div>
+    </div>
 
-      <hr>
-      <h3>レビュー投稿一覧</h3>
+    <h3 class="mb-4">レビュー投稿一覧</h3>
       <% if @salon.post_reviews.any? %>
         <% @salon.post_reviews.each do |review|%>
-          <div class="card my-3 p-3 shadow-sm rounded-lg">
-            <p class="mb-1">
-              <strong><%= review.user.present? ? review.user.name : "不明なユーザー" %></strong>
-            </p>
-            <p class="mb-1">
-              <strong>評価:</strong>
-              <div id="star-rate-<%= review.id %>"></div>
-              <script>
-                $(document).on('turbolinks:load', function() {
-                  $('#star-rate-<%= review.id%>').raty({
-                    size      : 36,
-                    starOff   : '<%= asset_path('star-off.png') %>',
-                    starOn    : '<%= asset_path('star-on.png') %>',
-                    starHalf  : '<%= asset_path('star-half.png') %>',
-                    readOnly  : true,
-                    score     : <%= review.raty || 0 %>,
+          <div class="card my-3 p-3 shadow-sm rounded-lg custom-card-background">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <p class="mb-0">
+                <strong><%= review.user.present? ? review.user.name : "不明なユーザー" %></strong>
+              </p>
+              <div class="d-flex align-items-center">
+                <strong class="me-2">評価:</strong>
+                <div id="star-rate-<%= review.id %>"></div>
+                <script>
+                  $(document).on('turbolinks:load', function() {
+                    $('#star-rate-<%= review.id%>').raty({
+                      size      : 24,
+                      starOff   : '<%= asset_path('star-off.png') %>',
+                      starOn    : '<%= asset_path('star-on.png') %>',
+                      starHalf  : '<%= asset_path('star-half.png') %>',
+                      readOnly  : true,
+                      score     : <%= review.raty || 0 %>,
+                    });
                   });
-                });
-              </script>
-            </p>
-            <p><strong><%= link_to review.review_title, review_path(review) %></strong></p>
-            <p><strong>内容</strong> <%= review.review_text %></p>
+                </script>
+              </div>
+            </div>
+            <h5 class="mb-2"><%= link_to review.review_title, review_path(review) %></h5>
+            <p class="card-text"><%= review.review_text %></p>
           </div>
         <% end %>
       <% else %>
-        <p>このサロンにはまだレビューがありません。</p>
+        <div class="alert alert-info" role="alert">
+          このサロンにはまだレビューがありません。
+        </div>
       <% end %>
     </div>
   </div>

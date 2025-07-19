@@ -34,6 +34,17 @@ body {
   max-width: 800px; /* 検索フォームの最大幅 */
 }
 
+.salon-image-wrapper {
+  width: 100%;
+  max-width: 300px; /* 画像の最大幅を設定 */
+  margin: 0 auto; /* 中央寄せ */
+}
+.salon-image-wrapper img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
 .search-form-hero .btn {
   white-space: nowrap; /* ボタン内のテキストを折り返さない */
 }
