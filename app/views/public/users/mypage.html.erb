@@ -1,22 +1,22 @@
-<div class="container mt-0 mb-4">
-  <h1 class="page-title">Mypage</h1>
+<div class="container mt-3 mb-5">
+  <h1 class="page-title text-center mb-5">Mypage</h1>
 
   <div class="row">
-    <div class="col-md-3">
-      <div class="card shadow-sm p-3 mb-4 custom-card-background">
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 mb-4 custom-card-background">
         <div class="profile-image-area text-center mb-3">
-          <%= image_tag @user.get_profile_image(100, 100), class: "border border-secondary", style: "width: 100px; height: 100px; object-fit: cover;" %>
+          <%= image_tag @user.get_profile_image(150, 150), class: "rounded-circle border border-secondary", style: "width: 150px; height: 150px; object-fit: cover;" %>
         </div>
         <h4 class="text-center mb-3"><%= @user.nickname %></h4>
 
         <div class="mb-3">
-          <%= link_to "登録情報を見る", user_path(@user), class: "btn btn-outline-primary w-100" %>
+          <%= link_to "登録情報を見る", user_path(@user), class: "btn btn-brown w-100" %>
         </div>
       </div>
     </div>
 
-    <div class="col-md-8 offset-md-1">
-      <h4 class="mb-3">レビュー投稿一覧</h4>
+    <div class="col-md-8">
+      <h5 class="mb-3">◇レビュー投稿一覧 <i class="fa-solid fa-pencil"></i></h5>
 
       <% if @user.post_reviews.any? %>
         <% @user.post_reviews.each do |review|%>
