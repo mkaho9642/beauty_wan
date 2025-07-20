@@ -33,20 +33,21 @@
             </h6>
             <div class="d-flex align-items-center mb-2">
               <strong>評価:</strong>
-              <div id="star-rate-mypage-<%= review.id %>" class="d-inline-block align-middle ms-2"></div>
-              <script>
-                $(document).on('turbolinks:load', function() {
-                  $('#star-rate-mypage-<%= review.id%>').raty({
-                    size      : 24,
-                    starOff   : '<%= asset_path('star-off.png') %>',
-                    starOn    : '<%= asset_path('star-on.png') %>',
-                    starHalf  : '<%= asset_path('star-half.png') %>',
-                    readOnly  : true,
-                    score     : <%= review.raty || 0 %>,
+              <div id="star-rate-<%= review.id %>"></div>
+                <script>
+                  $(document).on('turbolinks:load', function() {
+                    let elem = document.querySelector('#star-rate-<%= review.id%>');
+                    raty(elem,{
+                      size      : 24,
+                      starOff   : '<%= asset_path('star-off.png') %>',
+                      starOn    : '<%= asset_path('star-on.png') %>',
+                      starHalf  : '<%= asset_path('star-half.png') %>',
+                      readOnly  : true,
+                      score     : <%= review.raty || 0 %>,
+                    });
                   });
-                });
-              </script>
-            </div>
+                </script>
+              </div>
             <p class="card-text mb-2"><%= truncate(review.review_text, length: 100) %></p>
             <%= link_to '続きを読む', review_path(review), class: 'btn btn-outline-info btn-sm' %>
           </div>
