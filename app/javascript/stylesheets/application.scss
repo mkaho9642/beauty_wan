@@ -75,6 +75,9 @@ body {
 
 .btn-fixed-width {
   min-width: 120px; /* 必要に応じて調整してください */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-brown {
