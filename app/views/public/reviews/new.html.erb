@@ -1,65 +1,59 @@
-<div class="container">
-  <h3>レビュー投稿</h3>
-  <% if @post_review.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
-      <h4><%= @post_review.errors.count %>件のエラーがあります:</h4>
-      <ul>
-        <% @post_review.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="row">
-    <div class="col-md-6">
-      <%= form_with model: @post_review, url: salon_reviews_path(@salon), local: true do |f| %>
-        <% if @salon %>
-          <div class="form-group">
-            <%= f.label :salon_id, "サロン名" %>
-            <%= f.text_field :salon_name, value: @salon.name, class: "form-control", readonly: true %>
-            <%= f.hidden_field :salon_id, value: @salon.id %>
-          </div>
-        <% else %>
-          <div class="form-group">
-            <%= f.label :salon_id, "サロン選択" %>
-            <%# 例: 全サロンから選択させるドロップダウン %>
-            <%= f.collection_select :salon_id, Salon.all, :id, :name, { prompt: "サロンを選択してください" }, class: "form-control" %>
-          </div>
-        <% end %>
-
-        <div class="form-group row">
-          <%= f.label :review_title, 'タイトル', class: 'col-sm-3 col-form-label' %>
-          <div class="col-sm-9">
-            <%= f.text_field :review_title, class: 'form-control' %>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :raty, "評価" %>
-          <div id="star-rate-form"></div>
-          <%# <%= f.hidden_field :raty, id: 'review_raty' %>
-        </div>
-
-        <div class="form-group row">
-          <%= f.label :image, '画像', class: 'col-sm-3 col-form-label' %>
-          <div class="col-sm-9">
-            <%= f.file_field :image %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <%= f.label :review_text, 'レビュー内容', class: 'col-sm-3 col-form-label' %>
-          <div class="col-sm-9">
-            <%= f.text_area :review_text, class: 'form-control' %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-sm-9 offset-sm-3">
-            <%= f.submit '投稿する', class: 'btn btn-primary' %>
-          </div>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h3 class="text-center mb-4">レビュー投稿</h3>
+      <% if @post_review.errors.any? %>
+        <div id="error_explanation" class="alert alert-danger mb-4">
+          <h4><%= @post_review.errors.count %>件のエラーがあります:</h4>
+          <ul>
+            <% @post_review.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
         </div>
       <% end %>
+      <div class="card shadow-sm p-4 custom-card-background"> <%# フォーム全体をカードで囲む %>
+        <%= form_with model: @post_review, url: salon_reviews_path(@salon), local: true do |f| %>
+          <% if @salon %>
+            <div class="form-group mb-3"> <%# 下部に余白を追加 %>
+              <%= f.label :salon_id, "サロン名", class: "form-label" %>
+              <%= f.text_field :salon_name, value: @salon.name, class: "form-control", readonly: true %>
+              <%= f.hidden_field :salon_id, value: @salon.id %>
+            </div>
+          <% else %>
+            <div class="form-group mb-3"> <%# 下部に余白を追加 %>
+              <%= f.label :salon_id, "サロン選択", class: "form-label" %>
+              <%# 例: 全サロンから選択させるドロップダウン %>
+              <%= f.collection_select :salon_id, Salon.all, :id, :name, { prompt: "サロンを選択してください" }, class: "form-control" %>
+            </div>
+          <% end %>
+
+          <div class="form-group mb-3">
+            <%= f.label :review_title, 'タイトル', class: 'form-label' %>
+            <%= f.text_field :review_title, class: 'form-control' %>
+          </div>
+
+          <div class="form-group mb-3">
+            <%= f.label :raty, "評価", class: "form-label" %>
+            <div id="star-rate-form"></div>
+            <%= f.hidden_field :raty, id: 'review_raty' %>
+          </div>
+
+          <div class="form-group mb-3">
+            <%= f.label :image, '画像', class: 'form-label' %>
+            <%= f.file_field :image, class: "form-control-file" %>
+          </div>
+
+          <div class="form-group mb-4">
+            <%= f.label :review_text, 'レビュー内容', class: 'form-label' %>
+            <%= f.text_area :review_text, class: 'form-control' %>
+          </div>
+
+          <div class="d-grid">
+            <%= f.submit '投稿する', class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
@@ -76,6 +70,9 @@
         starHalf: '<%= asset_path('star-half.png') %>',
         scoreName: 'post_review[raty]',
         score: <%= @post_review.try(:raty) || 0 %>,
+        click: function(score, evt) {
+          $('#review_raty').val(score);
+        }
       });
     }
   }
