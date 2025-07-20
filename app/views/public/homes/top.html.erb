@@ -2,8 +2,6 @@
   <div class="container">
 
     <div class="main-visual-content mb-4">
-      <%# 画像がレスポンシブに対応するように、img-fluidクラスを追加します。 %>
-      <%# このクラスはBootstrapの機能で、画像を親要素の幅に合わせて自動的にリサイズします。 %>
       <%= image_tag "main_visual.jpg", class: "img-fluid" %>
     </div>
 
@@ -12,7 +10,7 @@
           <%= f.text_field :content, placeholder: "キーワードでサロンを探す", class: "form-control me-md-2 mb-2 mb-md-0 flex-grow-1" %>
           <%= f.select :model, options_for_select({"Salon" => "salon", "User" => "user"}), {}, { class: "form-select me-md-2 mb-2 mb-md-0" } %>
           <%= f.select :method, options_for_select({"完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial"}), {}, { class: "form-select me-md-2 mb-2 mb-md-0" } %>
-          <%= f.submit "検索", class: "btn btn-primary" %>
+          <%= f.submit "検索", class: "btn btn-brown" %>
         <% end %>
       </div>
       <p class="mt-4">
@@ -26,19 +24,25 @@
   <h2 class="text-center mb-4">サイトの特長</h2>
   <div class="row text-center">
     <div class="col-md-4 mb-4">
-      <i class="fas fa-check-circle fa-3x mb-3"></i>
-      <h3>安心・安全なサロン選び</h3>
-      <p>厳選されたサロンのみをご紹介。</p>
+      <div class="feature-card card shadow-sm p-4 h-100">
+        <i class="fas fa-check-circle fa-3x mb-3 text-brown"></i>
+        <h4>安心・安全なサロン選び</h4>
+        <p>厳選されたサロンのみをご紹介。</p>
+      </div>
     </div>
     <div class="col-md-4 mb-4">
-      <i class="fas fa-comments fa-3x mb-3"></i>
-      <h3>リアルな口コミ</h3>
-      <p>実際に利用した飼い主様の声が満載。</p>
+      <div class="feature-card card shadow-sm p-4 h-100">
+        <i class="fas fa-comments fa-3x mb-3 text-brown"></i>
+        <h4>リアルな口コミ</h4>
+        <p>実際に利用した飼い主様の声が満載。</p>
+      </div>
     </div>
     <div class="col-md-4 mb-4">
-      <i class="fas fa-search fa-3x mb-3"></i>
-      <h3>かんたん検索</h3>
-      <p>あなたの条件にぴったりのサロンが見つかる。</p>
+      <div class="feature-card card shadow-sm p-4 h-100">
+        <i class="fas fa-search fa-3x mb-3 text-brown"></i>
+        <h4>かんたん検索</h4>
+        <p>あなたの条件にぴったりのサロンが見つかる。</p>
+      </div>
     </div>
   </div>
 </div>
