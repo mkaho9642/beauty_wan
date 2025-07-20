@@ -41,15 +41,15 @@
           <% if user_signed_in? %>
               <div class="d-flex justify-content-end align-items-center mt-4 button-group-spacing">
                 <% if current_user.favorited_by?(@salon) %>
-                  <%= button_to salon_favorites_path(@salon), method: :delete, class: "btn btn-bookmark-remove-custom btn-sm btn-fixed-width" do %>
+                  <%= button_to salon_favorites_path(@salon), method: :delete, class: "btn btn-bookmark-remove-custom btn-sm" do %>
                     <i class="fa-solid fa-bookmark"></i> ブックマーク解除
                   <% end %>
                 <% else %>
-                  <%= button_to salon_favorites_path(@salon), method: :post, class: "btn btn-bookmark-inactive btn-sm btn-fixed-width" do %>
+                  <%= button_to salon_favorites_path(@salon), method: :post, class: "btn btn-bookmark-inactive btn-sm" do %>
                     <i class="fa-regular fa-bookmark"></i> ブックマークする
                   <% end %>
                 <% end %>
-                <%= link_to new_salon_review_path(@salon), class: 'btn btn-edit btn-sm btn-fixed-width' do %>
+                <%= link_to new_salon_review_path(@salon), class: 'btn btn-edit btn-sm' do %>
                   <i class="fa-solid fa-pencil"></i> レビュー投稿
                 <% end %>
               </div>

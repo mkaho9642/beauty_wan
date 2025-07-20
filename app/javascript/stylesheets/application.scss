@@ -126,23 +126,24 @@ body {
 
 .btn-bookmark-inactive {
   background-color: transparent;
-  color: #D4C7B7; /* 薄いブラウン */
-  border-color: #D4C7B7;
+  color: #635B51; /* 薄いブラウン */
+  border-color: #635B51;
 }
 .btn-bookmark-inactive:hover {
-  background-color: #D4C7B7;
+  background-color: #9B8F80;
   color: #fff;
-  border-color: #D4C7B7;
+  border-color: #9B8F80;
 }
 
 .btn-bookmark-remove-custom {
-  background-color: #A0522D; /* Sienna */
+  background-color: #635B51; /* Sienna */
   color: #fff;
-  border-color: #A0522D;
+  border-color: #635B51;
 }
 .btn-bookmark-remove-custom:hover {
-  background-color: #CD853F; /* Peru */
-  border-color: #CD853F;
+  background-color: #9B8F80; /* Peru */
+  color: #fff;
+  border-color: #9B8F80;
 }
 
 footer {
