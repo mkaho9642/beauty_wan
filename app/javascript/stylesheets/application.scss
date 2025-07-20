@@ -30,6 +30,17 @@ body {
   background-color: #F8F9FA;
 }
 
+.card-img-wrapper {
+  width: 100%;
+  height: 200px; /* 画像の高さを固定 */
+  overflow: hidden; /* コンテナからはみ出る部分を隠す */
+}
+.card-img-wrapper img {
+  width: 100%;
+  height: 100%; /* 親要素の高さに合わせる */
+  object-fit: cover; /* 画像をトリミングしてコンテナにフィットさせる */
+}
+
 .search-form-hero {
   max-width: 800px; /* 検索フォームの最大幅 */
 }
@@ -50,17 +61,6 @@ body {
   white-space: nowrap; /* ボタン内のテキストを折り返さない */
 }
 
-.btn-brown {
-  background-color: #7D7161; /* サドルブラウン */
-  color: #fff; /* 文字色を白に */
-  border-color: #7D7161; /* ボーダー色もブラウンに */
-}
-.btn-brown:hover {
-  background-color: #9B8F80; /* ホバー時の色を少し明るいブラウンに */
-  color: #fff;
-  border-color: #9B8F80;
-}
-
 .custom-table-border {
   border: 1px solid #9FA4A7; /* テーブル全体のボーダー */
 }
@@ -71,6 +71,21 @@ body {
 
 .button-group-spacing .btn:not(:last-child) {
   margin-right: 1rem; /* 最後のボタン以外に右マージンを適用 */
+}
+
+.btn-fixed-width {
+  min-width: 120px; /* 必要に応じて調整してください */
+}
+
+.btn-brown {
+  background-color: #7D7161; /* サドルブラウン */
+  color: #fff; /* 文字色を白に */
+  border-color: #7D7161; /* ボーダー色もブラウンに */
+}
+.btn-brown:hover {
+  background-color: #9B8F80; /* ホバー時の色を少し明るいブラウンに */
+  color: #fff;
+  border-color: #9B8F80;
 }
 
 /* 編集ボタンのスタイル */
@@ -104,6 +119,27 @@ body {
 .btn-back:hover {
   background-color: #836FFF; /* Medium Slate Blue */
   border-color: #836FFF;
+}
+
+.btn-bookmark-inactive {
+  background-color: transparent;
+  color: #D4C7B7; /* 薄いブラウン */
+  border-color: #D4C7B7;
+}
+.btn-bookmark-inactive:hover {
+  background-color: #D4C7B7;
+  color: #fff;
+  border-color: #D4C7B7;
+}
+
+.btn-bookmark-remove-custom {
+  background-color: #A0522D; /* Sienna */
+  color: #fff;
+  border-color: #A0522D;
+}
+.btn-bookmark-remove-custom:hover {
+  background-color: #CD853F; /* Peru */
+  border-color: #CD853F;
 }
 
 footer {

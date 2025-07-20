@@ -39,26 +39,26 @@
           </table>
 
           <% if user_signed_in? %>
-            <div class="d-flex justify-content-end align-items-center mt-4 button-group-spacing">
-                <% if @salon.favorited_by?(current_user) %>
-                  <%= link_to salon_favorites_path(@salon), method: :delete, class: "btn btn-danger" do %>
-                    <i class="fa-solid fa-heart"></i> ブックマーク解除
+              <div class="d-flex justify-content-end align-items-center mt-4 button-group-spacing">
+                <% if current_user.favorited_by?(@salon) %>
+                  <%= button_to salon_favorites_path(@salon), method: :delete, class: "btn btn-bookmark-remove-custom btn-sm btn-fixed-width" do %>
+                    <i class="fa-solid fa-bookmark"></i> ブックマーク解除
                   <% end %>
                 <% else %>
-                  <%= link_to salon_favorites_path(@salon), method: :post, class: "btn btn-secondary" do %>
-                    <i class="fa-regular fa-heart"></i> ブックマーク
+                  <%= button_to salon_favorites_path(@salon), method: :post, class: "btn btn-bookmark-inactive btn-sm btn-fixed-width" do %>
+                    <i class="fa-regular fa-bookmark"></i> ブックマークする
                   <% end %>
                 <% end %>
-                <%= link_to new_salon_review_path(@salon), class: 'btn btn-edit' do %>
+                <%= link_to new_salon_review_path(@salon), class: 'btn btn-edit btn-sm btn-fixed-width' do %>
                   <i class="fa-solid fa-pencil"></i> レビュー投稿
                 <% end %>
               </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <h3 class="mb-4">レビュー投稿一覧</h3>
+      <h3 class="mb-4">レビュー投稿一覧</h3>
       <% if @salon.post_reviews.any? %>
         <% @salon.post_reviews.each do |review|%>
           <div class="card my-3 p-3 shadow-sm rounded-lg custom-card-background">
