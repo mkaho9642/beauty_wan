@@ -1,10 +1,10 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h3>サロン編集</h3>
-      <%= form_with model: [:admin, @salon], local: true do |f| %>
+<div class="container mt-4 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-8 col-lg-6">
+      <h3 class="text-center mb-3">サロン編集</h3>
+      <%= form_with model: [:admin, @salon], local: true, class: "card shadow-sm p-4 custom-card-background" do |f| %>
         <% if @salon.errors.any? %>
-          <div id="error_explanation" class="alert alert-danger">
+          <div id="error_explanation" class="alert alert-danger mb-3">
             <h2><%= pluralize(@salon.errors.count, "error") %> prohibited this salon from being saved:</h2>
             <ul>
               <% @salon.errors.full_messages.each do |message| %>
@@ -14,41 +14,45 @@
           </div>
         <% end %>
 
-        <div class="form-group row">
-          <%= f.label :image, 'サロン画像', class: 'col-sm-3 col-form-label' %>
+        <div class="form-group row align-items-center mb-3">
+          <%= f.label :image, 'サロン画像', class: 'col-sm-3 col-form-label text-sm-end' %>
           <div class="col-sm-9">
-            <%= f.file_field :image %>
+            <%= f.file_field :image, class: "form-control-file mb-1" %>
+            <small class="form-text text-muted d-block">推奨サイズ: 幅 300px x 高さ 200px</small>
             <% if @salon.image.attached? %>
-              <%= image_tag @salon.image.variant(resize_to_limit: [100, 100]) %>
+              <div class="mt-2">
+                <%= image_tag @salon.image.variant(resize_to_limit: [100, 100]), class: "img-thumbnail" %>
+              </div>
             <% end %>
           </div>
         </div>
 
-        <div class="form-group row">
-          <%= f.label :name, 'サロン名', class: 'col-sm-3 col-form-label' %>
+        <div class="form-group row align-items-center mb-3">
+          <%= f.label :name, 'サロン名', class: 'col-sm-3 col-form-label text-sm-end' %>
           <div class="col-sm-9">
             <%= f.text_field :name, class: 'form-control' %>
           </div>
         </div>
 
-        <div class="form-group row">
-          <%= f.label :genre_id, 'ジャンル', class: 'col-sm-3 col-form-label' %>
+        <div class="form-group row align-items-center mb-3">
+          <%= f.label :genre_id, 'ジャンル', class: 'col-sm-3 col-form-label text-sm-end' %>
           <div class="col-sm-9">
             <%= f.collection_select :genre_id, @genres, :id, :name, { prompt: "ジャンルを選択してください", selected: @salon.genre&.id }, { class: 'form-control' } %>
           </div>
         </div>
 
-        <div class="form-group row">
-          <%= f.label :introduction, 'サロン情報', class: 'col-sm-3 col-form-label' %>
+        <div class="form-group row align-items-center mb-4">
+          <%= f.label :introduction, 'サロン情報', class: 'col-sm-3 col-form-label text-sm-end' %>
           <div class="col-sm-9">
             <%= f.text_area :introduction, class: 'form-control' %>
           </div>
         </div>
 
         <div class="form-group row">
-          <div class="col-sm-9 offset-sm-3">
-            <%= f.submit '更新', class: 'btn btn-success text-white' %>
-          </div>
+        <div class="col-sm-9 offset-sm-3 d-flex button-group-spacing">
+          <%= f.submit '更新', class: 'btn btn-success text-white' %>
+          <%= link_to '戻る', admin_salon_path(@salon), class: 'btn btn-secondary' %>
+        </div>
         </div>
       <% end %>
     </div>
