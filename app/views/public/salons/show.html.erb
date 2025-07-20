@@ -71,7 +71,8 @@
                 <div id="star-rate-<%= review.id %>"></div>
                 <script>
                   $(document).on('turbolinks:load', function() {
-                    $('#star-rate-<%= review.id%>').raty({
+                    let elem = document.querySelector('#star-rate-<%= review.id%>');
+                    raty(elem,{
                       size      : 24,
                       starOff   : '<%= asset_path('star-off.png') %>',
                       starOn    : '<%= asset_path('star-on.png') %>',

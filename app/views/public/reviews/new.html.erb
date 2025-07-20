@@ -63,8 +63,10 @@
   document.addEventListener('turbo:load', initializeRaty);
 
   function initializeRaty() {
-    if ($('#star-rate-form').length) {
-      $('#star-rate-form').raty({
+    let elem = document.querySelector('#star-rate-form');
+    if (elem) {
+      elem.innerHTML = ""
+      raty(elem,{
         starOn: '<%= asset_path('star-on.png') %>',
         starOff: '<%= asset_path('star-off.png') %>',
         starHalf: '<%= asset_path('star-half.png') %>',

@@ -100,7 +100,8 @@
 <script>
   $(document).on('turbolinks:load', function() {
     <% if @post_review %>
-      $('#star-rate-<%= @post_review.id%>').raty({
+      let elem = document.querySelector('#star-rate-<%= @post_review.id%>');
+      raty(elem,{
         size      : 36,
         starOff   : '<%= asset_path('star-off.png') %>',
         starOn    : '<%= asset_path('star-on.png') %>',
