@@ -33,7 +33,7 @@
           </div>
 
           <div class="text-center mt-4">
-            <%= link_to 'サロン詳細へ戻る', salon_path(@salon), class: 'btn btn-info mr-2' %>
+            <%= link_to 'サロン詳細へ戻る', salon_path(@salon), class: 'btn btn-back mr-2' %>
           </div>
 
           <hr class="my-5">
@@ -80,7 +80,7 @@
                   <%= f.label :comment_text, "コメント内容" %>
                   <%= f.text_area :comment_text, class: 'form-control', rows: 3 %>
                 </div>
-                <%= f.submit "コメントする", class: 'btn btn-primary' %>
+                <%= f.submit "コメントする", class: 'btn btn-brown w-100' %>
               <% end %>
             <% else %>
               <div class="alert alert-info text-center" role="alert">

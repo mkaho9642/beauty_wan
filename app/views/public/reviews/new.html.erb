@@ -1,6 +1,6 @@
 <div class="container my-5">
   <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-md-6">
       <h3 class="text-center mb-4">レビュー投稿</h3>
       <% if @post_review.errors.any? %>
         <div id="error_explanation" class="alert alert-danger mb-4">
@@ -12,16 +12,16 @@
           </ul>
         </div>
       <% end %>
-      <div class="card shadow-sm p-4 custom-card-background"> <%# フォーム全体をカードで囲む %>
+      <div class="card shadow-sm p-4 custom-card-background">
         <%= form_with model: @post_review, url: salon_reviews_path(@salon), local: true do |f| %>
           <% if @salon %>
-            <div class="form-group mb-3"> <%# 下部に余白を追加 %>
+            <div class="form-group mb-3">
               <%= f.label :salon_id, "サロン名", class: "form-label" %>
               <%= f.text_field :salon_name, value: @salon.name, class: "form-control", readonly: true %>
               <%= f.hidden_field :salon_id, value: @salon.id %>
             </div>
           <% else %>
-            <div class="form-group mb-3"> <%# 下部に余白を追加 %>
+            <div class="form-group mb-3">
               <%= f.label :salon_id, "サロン選択", class: "form-label" %>
               <%# 例: 全サロンから選択させるドロップダウン %>
               <%= f.collection_select :salon_id, Salon.all, :id, :name, { prompt: "サロンを選択してください" }, class: "form-control" %>
@@ -39,18 +39,14 @@
             <%= f.hidden_field :raty, id: 'review_raty' %>
           </div>
 
-          <div class="form-group mb-3">
-            <%= f.label :image, '画像', class: 'form-label' %>
-            <%= f.file_field :image, class: "form-control-file" %>
-          </div>
-
           <div class="form-group mb-4">
             <%= f.label :review_text, 'レビュー内容', class: 'form-label' %>
             <%= f.text_area :review_text, class: 'form-control' %>
           </div>
 
-          <div class="d-grid">
-            <%= f.submit '投稿する', class: 'btn btn-primary' %>
+          <div class="d-grid gap-2">
+            <%= f.submit '投稿する', class: 'btn btn-brown w-100' %>
+            <%= link_to 'サロン詳細へ戻る', salon_path(@salon), class: 'btn btn-back w-100 mt-2' %>
           </div>
         <% end %>
       </div>
