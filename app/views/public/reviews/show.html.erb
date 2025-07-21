@@ -101,14 +101,17 @@
   $(document).on('turbolinks:load', function() {
     <% if @post_review %>
       let elem = document.querySelector('#star-rate-<%= @post_review.id%>');
-      raty(elem,{
-        size      : 36,
-        starOff   : '<%= asset_path('star-off.png') %>',
-        starOn    : '<%= asset_path('star-on.png') %>',
-        starHalf  : '<%= asset_path('star-half.png') %>',
-        readOnly  : true,
-        score     : <%= @post_review.raty || 0 %>,
-      });
+      if (elem) {
+        elem.innerHTML = ""
+        raty(elem,{
+          size      : 36,
+          starOff   : '<%= asset_path('star-off.png') %>',
+          starOn    : '<%= asset_path('star-on.png') %>',
+          starHalf  : '<%= asset_path('star-half.png') %>',
+          readOnly  : true,
+          score     : <%= @post_review.raty || 0 %>,
+        });
+      }
     <% end %>
   });
 </script>
