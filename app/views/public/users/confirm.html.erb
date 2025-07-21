@@ -1,11 +1,19 @@
-<p>退会すると、サロンのブックマークやレビューの投稿ができなくなります</p>
-<p>退会しますか？</p>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <h2 class="text-center mb-4">退会確認</h2>
 
-<% if current_user == @user %>
-  <ul>
-    <%= link_to "退会", users_quit_path, method: :patch, class: "btn btn-danger" %>
-  </ul>
-  <ul>
-    <%= link_to "戻る", user_path(current_user.id), class: "btn btn-primary" %>
-  </ul>
-<% end %>
+      <div class="card shadow-sm p-4 mb-4 custom-card-background text-center">
+        <p class="lead mb-3">退会すると、サロンのブックマークや<br>レビューの投稿ができなくなります。</p>
+        <p class="lead mb-0">本当に退会しますか？</p>
+      </div>
+
+      <% if current_user == @user %>
+        <div class="d-flex justify-content-center mt-4 button-group-spacing">
+          <%= link_to "退会", users_quit_path, method: :patch, class: "btn btn-withdraw btn-fixed-width me-3" %>
+          <%= link_to "戻る", user_path(current_user.id), class: "btn btn-back btn-fixed-width" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
