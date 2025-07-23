@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:edit, :update, :confirm, :quit]
 
   def mypage
     @user = User.find(params[:id])
@@ -32,10 +32,15 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to user_path(current_user), alert: "他のユーザーの情報を編集することはできません。"
+      return
+    end
+    permitted_params = user_params.except(:password, :password_confirmation)
     if @user.update(user_params)
       redirect_to user_path(@user), notice: '登録情報を更新しました。'
     else
-      render 'edit'
+      render :edit, status: :unprocessable_entity
     end
   end
 

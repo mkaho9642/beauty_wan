@@ -14,6 +14,11 @@ class User < ApplicationRecord
     favorites.exists?(salon_id: salon.id)
   end
   
+  validates :name, presence: true, length: { minimum: 2, maximum: 20 }
+  validates :name, uniqueness: { case_sensitive: false }, on: :update
+  validates :nickname, presence: true, length: { minimum: 2, maximum: 20 }
+  validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: URI::MailTo::EMAIL_REGEXP }
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
