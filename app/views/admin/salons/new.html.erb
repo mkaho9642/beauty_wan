@@ -1,7 +1,8 @@
 <div class="container mt-5">
-  <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h3>新規登録</h3>
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <h3 class="mb-4 text-center">新規登録</h3>
+      
       <%= form_with model: [:admin, @salon], local: true do |f| %>
         <div class="form-group row">
           <%= f.label :image, 'サロン画像', class: 'col-sm-3 col-form-label' %>
