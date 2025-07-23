@@ -21,7 +21,7 @@
       <% if @user.post_reviews.any? %>
         <% @user.post_reviews.each do |review|%>
           <div class="card my-3 p-3 shadow-sm rounded-lg custom-card-background">
-            <h5 class="card-title mb-2">
+            <h5 class="card-title mb-3">
               <% if review.salon.present? %>
                 <%= link_to review.salon.name, salon_path(review.salon) %>
               <% else %>
@@ -29,7 +29,7 @@
               <% end %>
             </h5>
             <h6 class="card-subtitle mb-2 text-muted">
-              <%= link_to review.review_title, review_path(review) %>
+              <%= review.review_title %>
             </h6>
             <div class="d-flex align-items-center mb-2">
               <strong>評価:</strong>

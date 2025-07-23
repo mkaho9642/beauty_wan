@@ -20,7 +20,8 @@ class Public::UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     unless @user == current_user
-      redirect_to user_path(current_user), alert: "他のユーザーの情報を編集することはできません。"
+      redirect_to mypage_user_path(current_user), alert: "他のユーザーの情報を編集することはできません。"
+      return
     end
     render 'edit'
   end

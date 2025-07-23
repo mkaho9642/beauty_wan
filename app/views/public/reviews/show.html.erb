@@ -17,7 +17,7 @@
             <hr>
             <p class="mb-2"><strong>投稿者:</strong>
               <% if @user.present? %>
-                <%= @user.name %>
+                <%= link_to @user.name, mypage_user_path(@user) %>
               <% else %>
                 不明なユーザー
               <% end %>
