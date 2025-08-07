@@ -17,7 +17,7 @@
             <hr>
             <p class="mb-2"><strong>投稿者:</strong>
               <% if @user.present? %>
-                <%= link_to @user.name, mypage_user_path(@user) %>
+                <%= link_to @user.nickname, mypage_user_path(@user) %>
               <% else %>
                 不明なユーザー
               <% end %>
@@ -44,7 +44,7 @@
               <% @post_review.post_comments.each do |comment| %>
                 <div class="card mb-3 p-3 bg-light rounded-lg shadow-sm">
                   <p class="mb-1">
-                    <strong><%= comment.user.present? ? comment.user.name : "不明なユーザー" %></strong>
+                    <strong><%= comment.user.present? ? comment.user.nickname : "不明なユーザー" %></strong>
                     <small class="text-muted float-right"><%= l comment.created_at, format: :short %></small>
                   </p>
                   <p class="mb-1"><%= comment.comment_text %></p>
